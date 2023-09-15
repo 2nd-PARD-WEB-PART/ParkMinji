@@ -1,0 +1,39 @@
+/* 
+사용하고 싶은 폰트를 저장하는 방법이에요.해당 css파일을 만들어준 뒤, 
+구글폰트에서 다운받은 폰트를 src/Fonts/아래에 .woff 확장자로 저장해주고 아래와 같이 등록해주면 사용하고 싶을 때 사용할 수 있답니다-! :)
+
+구글폰트 : https://fonts.google.com/?subset=korean&noto.script=Kore
+
+보통 구글폰트 다운받으면 .ttf 형식르로 되어 있는 경우들이 있는데 아래 링크 들어가서 변환해주시고 .woff로 다시 다운 받으면 됩니다!
+URL : https://anyconv.com/ko/ttf-to-eot-byeonhwangi/
+
+폰트 적용 방법 전체적인 설명은 아래 링크에서 참고했어요.
+URL : https://velog.io/@ahsy92/React-%ED%8F%B0%ED%8A%B8-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%EC%B6%94%EA%B0%80%ED%95%98%EC%97%AC-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
+*/
+@font-face {
+  font-family: "SedgwickAve";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./SedgwickAve-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AguafinaScript";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./AguafinaScript-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "GasoekOne";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./GasoekOne-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "MoiraiOne";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./MoiraiOne-Regular.woff") format("woff");
+}
