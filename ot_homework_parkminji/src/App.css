@@ -9,6 +9,8 @@
   /* 자식 요소를 중앙 정렬 하기 위해서 */
   display: flex;
   justify-content: center;
+  /* 스크롤 방지 */
+  overflow: hidden;
 }
 
 .container {
