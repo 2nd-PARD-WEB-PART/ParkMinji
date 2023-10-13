@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import profile_img from "../img/torrr.jpg";
 import option from "../img/Options.png";
+import { Link } from "react-router-dom";
+// import profile_img from "../img/torrr.jpg";
 
 const MainContainer = styled.div`
   width: 945px;
@@ -112,14 +113,17 @@ const Intro = styled.div`
   word-wrap: break-word;
 `;
 
-export default function Profile() {
+export default function Profile(props) {
   return (
     <>
       <MainContainer>
-        <ProfileImg src={profile_img} />
+        <Link to="/edit_profile">
+          <ProfileImg src={props.data.profile_img} />
+        </Link>
+
         <SubContainer>
           <SecondContainer>
-            <Name>__min.zzi</Name>
+            <Name>{props.data.name}</Name>
             <Button>프로필 편집</Button>
             <OptionImg src={option} />
           </SecondContainer>
@@ -132,7 +136,7 @@ export default function Profile() {
             <MiddleNumber>525</MiddleNumber>
           </MiddleContainer>
           <ThirdContainer>
-            <Intro>서핑데이 기대된다!</Intro>
+            <Intro>{props.data.intro}</Intro>
           </ThirdContainer>
         </SubContainer>
       </MainContainer>

@@ -7,7 +7,7 @@ import new_post from "../img/NewPosts.png";
 import profile_img from "../img/torrr.jpg";
 
 const MainHr = styled.hr`
-  border: 1 solid #dbdbdb;
+  border: 0.5px solid #efefef;
   padding: 0;
   margin: 0;
 `;
