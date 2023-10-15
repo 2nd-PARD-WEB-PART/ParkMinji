@@ -225,17 +225,18 @@ export default function EditProfile(props) {
     fileInput.current.click();
   };
 
-  const onChangeImage = (e) => {
-    const file = e.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    setImageSrc(imageUrl);
-    props.modifydata(e, "profile_img");
-    change();
-  };
-
   function change() {
     setIsChanged(true);
   }
+
+  const onChangeImage = (e) => {
+    const file = e.target.files[0];
+    console.log(file.name);
+    const imageUrl = URL.createObjectURL(file);
+    setImageSrc(imageUrl);
+    props.modifydata(file.name, "profile_img");
+    change();
+  };
 
   return (
     <div>
