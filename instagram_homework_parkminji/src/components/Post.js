@@ -82,16 +82,16 @@ export default function Post() {
         <MenuBar>
           <LeftMenu>
             <SmallMenu style={{ borderTopWidth: 1.5 }}>
-              <MenuImg src={process.env.PUBLIC_URL + "/img/Posts.png"} />
+              <MenuImg src={process.env.PUBLIC_URL + "/img/Posts.svg"} />
               게시물
             </SmallMenu>
           </LeftMenu>
           <Menu>
-            <MenuImg src={process.env.PUBLIC_URL + "/img/Save.png"} />
+            <MenuImg src={process.env.PUBLIC_URL + "/img/Save.svg"} />
             저장됨
           </Menu>
           <Menu>
-            <MenuImg src={process.env.PUBLIC_URL + "/img/Tagged.png"} />
+            <MenuImg src={process.env.PUBLIC_URL + "/img/Tagged.svg"} />
             태그됨
           </Menu>
         </MenuBar>

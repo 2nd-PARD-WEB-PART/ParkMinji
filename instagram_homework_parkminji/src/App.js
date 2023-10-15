@@ -3,6 +3,7 @@ import "./App.css";
 import "./fonts/Fonts.css";
 import EditProfile from "./components/EditProfile";
 import MyPage from "./components/MyPage";
+import Home from "./components/Home";
 import { useState } from "react";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           path="/edit_profile"
           element={<EditProfile data={userData} modifydata={modifyUSerData} />}
         />
+        <Route path="/home" element={<Home data={userData} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -44,13 +44,15 @@ export default function MainBar(props) {
     <>
       <div>
         <Container>
-          <Logo src={process.env.PUBLIC_URL + "/img/title_logo.png"} />
+          <Link to="/home">
+            <Logo src={process.env.PUBLIC_URL + "/img/title_logo.png"} />
+          </Link>
           <MenuContainer>
-            <Link to="/">
-              <MenuImage src={process.env.PUBLIC_URL + "/img/home.png"} />
+            <Link to="/home">
+              <MenuImage src={process.env.PUBLIC_URL + "/img/home-fill.svg"} />
             </Link>
-            <MenuImage src={process.env.PUBLIC_URL + "/img/NewPosts.png"} />
-            <MenuImage src={process.env.PUBLIC_URL + "/img/like.png"} />
+            <MenuImage src={process.env.PUBLIC_URL + "/img/NewPosts.svg"} />
+            <MenuImage src={process.env.PUBLIC_URL + "/img/ActivityFeed.svg"} />
             <Link to="/">
               <MenuImage
                 src={props.data.profile_img}

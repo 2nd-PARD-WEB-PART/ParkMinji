@@ -217,6 +217,7 @@ const SubmitButton = styled.div`
 
 export default function EditProfile(props) {
   const [imageSrc, setImageSrc] = useState(null);
+  const [imageName, setImageName] = useState(null);
   const [isChanged, setIsChanged] = useState(false);
 
   const fileInput = React.createRef();
@@ -234,7 +235,7 @@ export default function EditProfile(props) {
     console.log(file.name);
     const imageUrl = URL.createObjectURL(file);
     setImageSrc(imageUrl);
-    props.modifydata(file.name, "profile_img");
+    setImageName(file.name);
     change();
   };
 
@@ -339,8 +340,16 @@ export default function EditProfile(props) {
               ></InputText>
             </FormBox>
             {isChanged ? (
-              <Link to="/">
-                <SubmitButton>제출</SubmitButton>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <SubmitButton
+                  onClick={() => {
+                    if (imageName !== null) {
+                      props.modifydata(imageName, "profile_img");
+                    }
+                  }}
+                >
+                  제출
+                </SubmitButton>
               </Link>
             ) : (
               <NoSubmitButton>제출</NoSubmitButton>
