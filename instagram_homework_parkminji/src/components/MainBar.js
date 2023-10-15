@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import title_logo from "../img/title_logo.png";
-import home from "../img/home.png";
-import like from "../img/like.png";
-import new_post from "../img/NewPosts.png";
-import profile_img from "../img/torrr.jpg";
+import { Link } from "react-router-dom";
 
 const MainHr = styled.hr`
   border: 0.5px solid #efefef;
@@ -43,17 +39,24 @@ const MenuImage = styled.img`
   margin-right: 0px;
 `;
 
-export default function MainBar() {
+export default function MainBar(props) {
   return (
     <>
       <div>
         <Container>
-          <Logo src={title_logo} />
+          <Logo src={process.env.PUBLIC_URL + "/img/title_logo.png"} />
           <MenuContainer>
-            <MenuImage src={home} />
-            <MenuImage src={new_post} />
-            <MenuImage src={like} />
-            <MenuImage src={profile_img} style={{ borderRadius: 100 }} />
+            <Link to="/">
+              <MenuImage src={process.env.PUBLIC_URL + "/img/home.png"} />
+            </Link>
+            <MenuImage src={process.env.PUBLIC_URL + "/img/NewPosts.png"} />
+            <MenuImage src={process.env.PUBLIC_URL + "/img/like.png"} />
+            <Link to="/">
+              <MenuImage
+                src={props.data.profile_img}
+                style={{ borderRadius: 100 }}
+              />
+            </Link>
           </MenuContainer>
         </Container>
         <MainHr />

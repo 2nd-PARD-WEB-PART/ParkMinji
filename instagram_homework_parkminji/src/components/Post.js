@@ -1,10 +1,4 @@
 import styled from "styled-components";
-import posts from "../img/Posts.png";
-import save from "../img/Save.png";
-import tagged from "../img/Tagged.png";
-import rain from "../img/rain.jpg";
-import coffee from "../img/coffee.jpg";
-import night from "../img/night.jpg";
 
 const MainContainer = styled.div`
   width: 945px;
@@ -88,23 +82,26 @@ export default function Post() {
         <MenuBar>
           <LeftMenu>
             <SmallMenu style={{ borderTopWidth: 1.5 }}>
-              <MenuImg src={posts} />
+              <MenuImg src={process.env.PUBLIC_URL + "/img/Posts.png"} />
               게시물
             </SmallMenu>
           </LeftMenu>
           <Menu>
-            <MenuImg src={save} />
+            <MenuImg src={process.env.PUBLIC_URL + "/img/Save.png"} />
             저장됨
           </Menu>
           <Menu>
-            <MenuImg src={tagged} />
+            <MenuImg src={process.env.PUBLIC_URL + "/img/Tagged.png"} />
             태그됨
           </Menu>
         </MenuBar>
         <PostContainer>
-          <PostImg src={coffee} />
-          <PostImg src={rain} style={{ marginLeft: 19, marginRight: 19 }} />
-          <PostImg src={night} />
+          <PostImg src={process.env.PUBLIC_URL + "/img/coffee.jpg"} />
+          <PostImg
+            src={process.env.PUBLIC_URL + "/img/rain.jpg"}
+            style={{ marginLeft: 19, marginRight: 19 }}
+          />
+          <PostImg src={process.env.PUBLIC_URL + "/img/night.jpg"} />
         </PostContainer>
       </MainContainer>
     </>

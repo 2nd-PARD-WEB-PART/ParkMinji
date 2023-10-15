@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import MainBar from "./MainBar";
-import meta from "../img/meta.svg";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -240,7 +239,7 @@ export default function EditProfile(props) {
 
   return (
     <div>
-      <MainBar />
+      <MainBar data={props.data} />
       <Container>
         <MainForm>
           <LeftEditContainer>
@@ -254,7 +253,7 @@ export default function EditProfile(props) {
               </DetailMenu>
             </EditMenu>
             <MetaBox>
-              <MetaImage src={meta} />
+              <MetaImage src={process.env.PUBLIC_URL + "/img/meta.svg"} />
               <MetaMiddleText>Accounts center</MetaMiddleText>
               <MetaSmallText>
                 Control settings for connected experiences on Instagram, the

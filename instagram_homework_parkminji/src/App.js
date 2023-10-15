@@ -8,7 +8,7 @@ import { useState } from "react";
 function App() {
   const data = {
     name: "__min.zzi",
-    profile_img: "../img/torrr.jpg",
+    profile_img: "/img/torrr.jpg",
     intro: "서핑데이 기대된다!",
     web_link: "",
     email: "",

@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import option from "../img/Options.png";
 import { Link } from "react-router-dom";
-// import profile_img from "../img/torrr.jpg";
 
 const MainContainer = styled.div`
   width: 945px;
@@ -120,12 +118,15 @@ export default function Profile(props) {
         <Link to="/edit_profile">
           <ProfileImg src={props.data.profile_img} />
         </Link>
-
         <SubContainer>
           <SecondContainer>
             <Name>{props.data.name}</Name>
-            <Button>프로필 편집</Button>
-            <OptionImg src={option} />
+            <Link to="/edit_profile">
+              <Button>프로필 편집</Button>
+            </Link>
+            <Link to="/edit_profile">
+              <OptionImg src={process.env.PUBLIC_URL + "/img/Options.png"} />
+            </Link>
           </SecondContainer>
           <MiddleContainer>
             <MiddleText>게시물</MiddleText>

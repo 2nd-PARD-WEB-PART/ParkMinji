@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 export default function MyPage(props) {
   return (
     <div>
-      <MainBar />
+      <MainBar data={props.data} />
       <Profile data={props.data}></Profile>
-      <Post></Post>
+      <Post data={props.data}></Post>
     </div>
   );
 }
