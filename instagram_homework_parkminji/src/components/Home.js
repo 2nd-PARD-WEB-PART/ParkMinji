@@ -226,7 +226,6 @@ const ProfileBox = styled.div`
   margin-top: 45px;
   width: 293px;
   height: 56px;
-  border: 1px solid;
 `;
 
 const ProfileImg = styled.img`
@@ -237,9 +236,20 @@ const ProfileImg = styled.img`
   margin-right: 12px;
 `;
 
-// const ProfileName = styled.div`
-//   width: ;
-// `;
+const ProfileName = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  padding: 6px 0px 6px 12px;
+  color: var(--Black, #262626);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Segoe UI;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px; /* 128.571% */
+  text-transform: lowercase;
+`;
 
 export default function Home(props) {
   return (
@@ -295,6 +305,7 @@ export default function Home(props) {
         <ProfileContainer>
           <ProfileBox>
             <ProfileImg src={props.data.profile_img}></ProfileImg>
+            <ProfileName>{props.data.name}</ProfileName>
           </ProfileBox>
         </ProfileContainer>
       </MainContainer>
