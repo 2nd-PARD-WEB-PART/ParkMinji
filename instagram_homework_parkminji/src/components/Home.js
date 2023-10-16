@@ -237,9 +237,9 @@ const ProfileImg = styled.img`
   margin-right: 12px;
 `;
 
-const ProfileName = styled.div`
-  width: ;
-`;
+// const ProfileName = styled.div`
+//   width: ;
+// `;
 
 export default function Home(props) {
   return (
