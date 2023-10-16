@@ -218,6 +218,12 @@ const SubmitButton = styled.div`
 export default function EditProfile(props) {
   const [imageSrc, setImageSrc] = useState(null);
   const [imageName, setImageName] = useState(null);
+  const [isChanegeName, setIsChangeName] = useState(null);
+  const [isChanegeEmail, setIsChangeEmail] = useState(null);
+  const [isChanegeIntro, setIsChangeIntro] = useState(null);
+  const [isChanegeWeb, setIsChangeWeb] = useState(null);
+  const [isChanegeSex, setIsChangeSex] = useState(null);
+
   const [isChanged, setIsChanged] = useState(false);
 
   const fileInput = React.createRef();
@@ -287,9 +293,9 @@ export default function EditProfile(props) {
               <InputName>사용자 이름</InputName>
               <InputText
                 type="text"
-                value={props.data.name}
+                value={isChanegeName === null ? props.data.name : null}
                 onChange={(e) => {
-                  props.modifydata(e, "name");
+                  setIsChangeName(e);
                   change();
                 }}
               ></InputText>
@@ -298,10 +304,10 @@ export default function EditProfile(props) {
               <InputName>소개</InputName>
               <InputTextarea
                 type="text"
-                value={props.data.intro}
+                value={isChanegeIntro === null ? props.data.intro : null}
                 style={{ height: "64px" }}
                 onChange={(e) => {
-                  props.modifydata(e, "intro");
+                  setIsChangeIntro(e);
                   change();
                 }}
               ></InputTextarea>
@@ -310,9 +316,9 @@ export default function EditProfile(props) {
               <InputName>웹사이트</InputName>
               <InputText
                 type="text"
-                value={props.data.web_link}
+                value={isChanegeWeb === null ? props.data.web_link : null}
                 onChange={(e) => {
-                  props.modifydata(e, "web_link");
+                  setIsChangeWeb(e);
                   change();
                 }}
               ></InputText>
@@ -321,9 +327,9 @@ export default function EditProfile(props) {
               <InputName>이메일</InputName>
               <InputText
                 type="text"
-                value={props.data.email}
+                value={isChanegeEmail === null ? props.data.email : null}
                 onChange={(e) => {
-                  props.modifydata(e, "email");
+                  setIsChangeEmail(e);
                   change();
                 }}
               ></InputText>
@@ -332,9 +338,9 @@ export default function EditProfile(props) {
               <InputName>성별</InputName>
               <InputText
                 type="text"
-                value={props.data.sex}
+                value={isChanegeSex === null ? props.data.sex : null}
                 onChange={(e) => {
-                  props.modifydata(e, "sex");
+                  setIsChangeSex(e);
                   change();
                 }}
               ></InputText>
@@ -343,8 +349,25 @@ export default function EditProfile(props) {
               <Link to="/" style={{ textDecoration: "none" }}>
                 <SubmitButton
                   onClick={() => {
+                    // 아마 이렇게 하는 방법 말고 한번에 바꾸는 방법이 있을텐데 이미 Modifydata 함수를 만들어버려서 코드 수정하기 너무 귀찮다.
+                    // 시간되면 방법찾아보고 개선해봐야지.
                     if (imageName !== null) {
                       props.modifydata(imageName, "profile_img");
+                    }
+                    if (isChanegeName !== null) {
+                      props.modifydata(isChanegeName, "name");
+                    }
+                    if (isChanegeIntro !== null) {
+                      props.modifydata(isChanegeIntro, "intro");
+                    }
+                    if (isChanegeWeb !== null) {
+                      props.modifydata(isChanegeWeb, "web_link");
+                    }
+                    if (isChanegeEmail !== null) {
+                      props.modifydata(isChanegeEmail, "email");
+                    }
+                    if (isChanegeSex !== null) {
+                      props.modifydata(isChanegeSex, "sex");
                     }
                   }}
                 >
