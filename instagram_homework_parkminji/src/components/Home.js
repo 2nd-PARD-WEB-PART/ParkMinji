@@ -95,6 +95,7 @@ const FeedImg = styled.img`
 `;
 
 const Footer = styled.div`
+  box-sizing: border-box;
   border: 1px solid #efefef;
   display: flex;
   flex-direction: column;
@@ -219,6 +220,27 @@ const ProfileContainer = styled.div`
   height: 100%;
 `;
 
+const ProfileBox = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  margin-top: 45px;
+  width: 293px;
+  height: 56px;
+  border: 1px solid;
+`;
+
+const ProfileImg = styled.img`
+  box-sizing: border-box;
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  margin-right: 12px;
+`;
+
+const ProfileName = styled.div`
+  width: ;
+`;
+
 export default function Home(props) {
   return (
     <div>
@@ -270,7 +292,11 @@ export default function Home(props) {
             </Footer>
           </FeedContainer>
         </PostContainer>
-        <ProfileContainer></ProfileContainer>
+        <ProfileContainer>
+          <ProfileBox>
+            <ProfileImg src={props.data.profile_img}></ProfileImg>
+          </ProfileBox>
+        </ProfileContainer>
       </MainContainer>
     </div>
   );
