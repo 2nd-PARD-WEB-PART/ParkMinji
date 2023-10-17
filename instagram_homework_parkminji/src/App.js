@@ -4,7 +4,7 @@ import "./fonts/Fonts.css";
 import EditProfile from "./components/EditProfile";
 import MyPage from "./components/MyPage";
 import Home from "./components/Home";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const data = {
