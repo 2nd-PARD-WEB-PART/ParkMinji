@@ -323,7 +323,7 @@ export default function Home(props) {
                 ></WriteImg>
                 <WriteCommentInput
                   type="text"
-                  value="댓글달기..."
+                  placeholder="댓글달기..."
                 ></WriteCommentInput>
                 <SubmitComment>게시</SubmitComment>
               </WriteCommentContainer>

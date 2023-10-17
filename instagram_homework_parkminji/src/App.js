@@ -26,7 +26,7 @@ function App() {
 
   const modifyUSerData = (e, field) => {
     let newValue = e;
-    console.log(field);
+    // console.log(field);
     if (field === "profile_img") {
       newValue = "/img/" + String(e);
     } else if (field === "is_like") {

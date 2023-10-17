@@ -222,6 +222,11 @@ export default function EditProfile(props) {
   const [isChanegeIntro, setIsChangeIntro] = useState(null);
   const [isChanegeWeb, setIsChangeWeb] = useState(null);
   const [isChanegeSex, setIsChangeSex] = useState(null);
+  const [name, setName] = useState("");
+  const [intro, setIntro] = useState("");
+  const [web, setWeb] = useState("");
+  const [email, setEmail] = useState("");
+  const [sex, setSex] = useState("");
 
   const [isChanged, setIsChanged] = useState(false);
 
@@ -292,9 +297,10 @@ export default function EditProfile(props) {
               <InputName>사용자 이름</InputName>
               <InputText
                 type="text"
-                value={isChanegeName === null ? props.data.name : null}
+                value={isChanegeName === null ? props.data.name : name}
                 onChange={(e) => {
                   setIsChangeName(e);
+                  setName(e.target.value);
                   change();
                 }}
               ></InputText>
@@ -303,10 +309,11 @@ export default function EditProfile(props) {
               <InputName>소개</InputName>
               <InputTextarea
                 type="text"
-                value={isChanegeIntro === null ? props.data.intro : null}
+                value={isChanegeIntro === null ? props.data.intro : intro}
                 style={{ height: "64px" }}
                 onChange={(e) => {
                   setIsChangeIntro(e);
+                  setIntro(e.target.value);
                   change();
                 }}
               ></InputTextarea>
@@ -315,9 +322,10 @@ export default function EditProfile(props) {
               <InputName>웹사이트</InputName>
               <InputText
                 type="text"
-                value={isChanegeWeb === null ? props.data.web_link : null}
+                value={isChanegeWeb === null ? props.data.web_link : web}
                 onChange={(e) => {
                   setIsChangeWeb(e);
+                  setWeb(e.target.value);
                   change();
                 }}
               ></InputText>
@@ -326,9 +334,10 @@ export default function EditProfile(props) {
               <InputName>이메일</InputName>
               <InputText
                 type="text"
-                value={isChanegeEmail === null ? props.data.email : null}
+                value={isChanegeEmail === null ? props.data.email : email}
                 onChange={(e) => {
                   setIsChangeEmail(e);
+                  setEmail(e.target.value);
                   change();
                 }}
               ></InputText>
@@ -337,9 +346,10 @@ export default function EditProfile(props) {
               <InputName>성별</InputName>
               <InputText
                 type="text"
-                value={isChanegeSex === null ? props.data.sex : null}
+                value={isChanegeSex === null ? props.data.sex : sex}
                 onChange={(e) => {
                   setIsChangeSex(e);
+                  setSex(e.target.value);
                   change();
                 }}
               ></InputText>
