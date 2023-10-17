@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MainBar from "./MainBar";
+import React, { useState } from "react";
 
 const MainContainer = styled.div`
   display: flex;
@@ -252,6 +253,17 @@ const ProfileName = styled.div`
 `;
 
 export default function Home(props) {
+  const [isLikeChanged, setIsLikeChanged] = useState(false);
+
+  function likeFunction(num) {
+    if (isLikeChanged) {
+      props.modifydata(Number(num) - 1, "like_num");
+      props.modifydata(!props.data.is_like, "is_like");
+    } else {
+      props.modifydata(Number(num) + 1, "like_num");
+      props.modifydata(!props.data.is_like, "is_like");
+    }
+  }
   return (
     <div>
       <MainBar data={props.data} />
@@ -271,7 +283,23 @@ export default function Home(props) {
             <FeedImg src={props.data.feed_img} />
             <Footer>
               <FooterIconContainer>
-                <FooterIcon src={process.env.PUBLIC_URL + "/img/Like.svg"} />
+                {isLikeChanged ? (
+                  <FooterIcon
+                    src={process.env.PUBLIC_URL + "/img/Fill_Like.svg"}
+                    onClick={() => {
+                      likeFunction(props.data.like_num);
+                      setIsLikeChanged(false);
+                    }}
+                  />
+                ) : (
+                  <FooterIcon
+                    src={process.env.PUBLIC_URL + "/img/Like.svg"}
+                    onClick={() => {
+                      likeFunction(props.data.like_num);
+                      setIsLikeChanged(true);
+                    }}
+                  />
+                )}
                 <FooterIcon src={process.env.PUBLIC_URL + "/img/Comment.svg"} />
                 <FooterIcon
                   src={process.env.PUBLIC_URL + "/img/SharePosts.svg"}

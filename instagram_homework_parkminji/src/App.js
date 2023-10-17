@@ -4,10 +4,10 @@ import "./fonts/Fonts.css";
 import EditProfile from "./components/EditProfile";
 import MyPage from "./components/MyPage";
 import Home from "./components/Home";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  let data = {
+  const data = {
     name: "__min.zzi",
     profile_img: "/img/torrr.jpg",
     intro: "서핑데이 기대된다!",
@@ -18,25 +18,32 @@ function App() {
     feed_profile_img: "/img/profile_img.png",
     feed_img: "/img/235.png",
     feed_text: "파드 파이팅!!",
-    like_num: 1069,
+    is_like: false,
+    like_num: "1069",
   };
 
   const [userData, setUserData] = useState(data);
 
   const modifyUSerData = (e, field) => {
     let newValue = e;
-    console.log(typeof e);
-    field === "profile_img"
-      ? (newValue = "/img/" + String(e))
-      : (newValue = e.target.value);
+    console.log(field);
+    if (field === "profile_img") {
+      newValue = "/img/" + String(e);
+    } else if (field === "is_like") {
+      newValue = String(e);
+    } else if (field === "like_num") {
+      newValue = e;
+      //   console.log(newValue);
+    } else {
+      newValue = e.target.value;
+    }
 
-    console.log(newValue);
+    // console.log(field);
 
-    const newUserData = {
-      ...userData,
+    setUserData((prevUserData) => ({
+      ...prevUserData,
       [field]: newValue,
-    };
-    setUserData(newUserData);
+    }));
   };
 
   return (
@@ -47,7 +54,10 @@ function App() {
           path="/edit_profile"
           element={<EditProfile data={userData} modifydata={modifyUSerData} />}
         />
-        <Route path="/home" element={<Home data={userData} />} />
+        <Route
+          path="/home"
+          element={<Home data={userData} modifydata={modifyUSerData} />}
+        />
       </Routes>
     </BrowserRouter>
   );
