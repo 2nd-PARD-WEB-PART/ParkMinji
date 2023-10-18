@@ -20,6 +20,7 @@ function App() {
     feed_text: "파드 파이팅!!",
     is_like: false,
     like_num: "1069",
+    comment: [],
   };
 
   const [userData, setUserData] = useState(data);
@@ -35,7 +36,7 @@ function App() {
       newValue = e;
       //   console.log(newValue);
     } else {
-      newValue = e.target.value;
+      newValue = e;
     }
 
     // console.log(field);

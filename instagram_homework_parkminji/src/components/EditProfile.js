@@ -217,16 +217,13 @@ const SubmitButton = styled.div`
 export default function EditProfile(props) {
   const [imageSrc, setImageSrc] = useState(null);
   const [imageName, setImageName] = useState(null);
-  const [isChanegeName, setIsChangeName] = useState(null);
-  const [isChanegeEmail, setIsChangeEmail] = useState(null);
-  const [isChanegeIntro, setIsChangeIntro] = useState(null);
-  const [isChanegeWeb, setIsChangeWeb] = useState(null);
-  const [isChanegeSex, setIsChangeSex] = useState(null);
-  const [name, setName] = useState("");
-  const [intro, setIntro] = useState("");
-  const [web, setWeb] = useState("");
-  const [email, setEmail] = useState("");
-  const [sex, setSex] = useState("");
+  const [name, setName] = useState(props.data.name ? props.data.name : "");
+  const [intro, setIntro] = useState(props.data.intro ? props.data.intro : "");
+  const [web, setWeb] = useState(
+    props.data.web_link ? props.data.web_link : ""
+  );
+  const [email, setEmail] = useState(props.data.email ? props.data.email : "");
+  const [sex, setSex] = useState(props.data.sex ? props.data.sex : "");
 
   const [isChanged, setIsChanged] = useState(false);
 
@@ -248,6 +245,27 @@ export default function EditProfile(props) {
     setImageName(file.name);
     change();
   };
+
+  function handleSubmit() {
+    if (imageName !== null) {
+      props.modifydata(imageName, "profile_img");
+    }
+    if (name !== "") {
+      props.modifydata(name, "name");
+    }
+    if (intro !== "") {
+      props.modifydata(intro, "intro");
+    }
+    if (web !== "") {
+      props.modifydata(web, "web_link");
+    }
+    if (email !== "") {
+      props.modifydata(email, "email");
+    }
+    if (sex !== "") {
+      props.modifydata(sex, "sex");
+    }
+  }
 
   return (
     <div>
@@ -297,9 +315,8 @@ export default function EditProfile(props) {
               <InputName>사용자 이름</InputName>
               <InputText
                 type="text"
-                value={isChanegeName === null ? props.data.name : name}
+                value={name}
                 onChange={(e) => {
-                  setIsChangeName(e);
                   setName(e.target.value);
                   change();
                 }}
@@ -309,10 +326,9 @@ export default function EditProfile(props) {
               <InputName>소개</InputName>
               <InputTextarea
                 type="text"
-                value={isChanegeIntro === null ? props.data.intro : intro}
+                value={intro}
                 style={{ height: "64px" }}
                 onChange={(e) => {
-                  setIsChangeIntro(e);
                   setIntro(e.target.value);
                   change();
                 }}
@@ -322,9 +338,8 @@ export default function EditProfile(props) {
               <InputName>웹사이트</InputName>
               <InputText
                 type="text"
-                value={isChanegeWeb === null ? props.data.web_link : web}
+                value={web}
                 onChange={(e) => {
-                  setIsChangeWeb(e);
                   setWeb(e.target.value);
                   change();
                 }}
@@ -334,9 +349,8 @@ export default function EditProfile(props) {
               <InputName>이메일</InputName>
               <InputText
                 type="text"
-                value={isChanegeEmail === null ? props.data.email : email}
+                value={email}
                 onChange={(e) => {
-                  setIsChangeEmail(e);
                   setEmail(e.target.value);
                   change();
                 }}
@@ -346,9 +360,8 @@ export default function EditProfile(props) {
               <InputName>성별</InputName>
               <InputText
                 type="text"
-                value={isChanegeSex === null ? props.data.sex : sex}
+                value={sex}
                 onChange={(e) => {
-                  setIsChangeSex(e);
                   setSex(e.target.value);
                   change();
                 }}
@@ -356,32 +369,7 @@ export default function EditProfile(props) {
             </FormBox>
             {isChanged ? (
               <Link to="/" style={{ textDecoration: "none" }}>
-                <SubmitButton
-                  onClick={() => {
-                    // 아마 이렇게 하는 방법 말고 한번에 바꾸는 방법이 있을텐데 이미 Modifydata 함수를 만들어버려서 코드 수정하기 너무 귀찮다.
-                    // 시간되면 방법찾아보고 개선해봐야지.
-                    if (imageName !== null) {
-                      props.modifydata(imageName, "profile_img");
-                    }
-                    if (isChanegeName !== null) {
-                      props.modifydata(isChanegeName, "name");
-                    }
-                    if (isChanegeIntro !== null) {
-                      props.modifydata(isChanegeIntro, "intro");
-                    }
-                    if (isChanegeWeb !== null) {
-                      props.modifydata(isChanegeWeb, "web_link");
-                    }
-                    if (isChanegeEmail !== null) {
-                      props.modifydata(isChanegeEmail, "email");
-                    }
-                    if (isChanegeSex !== null) {
-                      props.modifydata(isChanegeSex, "sex");
-                    }
-                  }}
-                >
-                  제출
-                </SubmitButton>
+                <SubmitButton onClick={handleSubmit}>제출</SubmitButton>
               </Link>
             ) : (
               <NoSubmitButton>제출</NoSubmitButton>
