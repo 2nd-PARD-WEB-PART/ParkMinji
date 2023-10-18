@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import { useState } from "react";
 
 function App() {
-  const data = {
+  let data = {
     name: "__min.zzi",
     profile_img: "/img/torrr.jpg",
     intro: "서핑데이 기대된다!",

@@ -253,7 +253,7 @@ const ProfileName = styled.div`
 `;
 
 export default function Home(props) {
-  const [isLikeChanged, setIsLikeChanged] = useState(false);
+  const [isLikeChanged, setIsLikeChanged] = useState(props.data.is_like);
 
   function likeFunction(num) {
     if (isLikeChanged) {
@@ -275,12 +275,14 @@ export default function Home(props) {
                 <HeaderProfileBorder
                   src={process.env.PUBLIC_URL + "/img/Ellipse.svg"}
                 />
-                <HeaderProfileImg src={props.data.feed_profile_img} />
+                <HeaderProfileImg
+                  src={process.env.PUBLIC_URL + "/img/profile_img.png"}
+                />
               </HeaderProfile>
-              <HeaderProfileName>{props.data.feed_name}</HeaderProfileName>
+              <HeaderProfileName>handsomeguy</HeaderProfileName>
               <HeaderOption src={process.env.PUBLIC_URL + "/img/More.svg"} />
             </Header>
-            <FeedImg src={props.data.feed_img} />
+            <FeedImg src={process.env.PUBLIC_URL + "/img/235.png"} />
             <Footer>
               <FooterIconContainer>
                 {isLikeChanged ? (

@@ -224,7 +224,6 @@ export default function EditProfile(props) {
   );
   const [email, setEmail] = useState(props.data.email ? props.data.email : "");
   const [sex, setSex] = useState(props.data.sex ? props.data.sex : "");
-
   const [isChanged, setIsChanged] = useState(false);
 
   const fileInput = React.createRef();
@@ -232,10 +231,6 @@ export default function EditProfile(props) {
   const handleButtonClick = (e) => {
     fileInput.current.click();
   };
-
-  function change() {
-    setIsChanged(true);
-  }
 
   const onChangeImage = (e) => {
     const file = e.target.files[0];
@@ -245,6 +240,10 @@ export default function EditProfile(props) {
     setImageName(file.name);
     change();
   };
+
+  function change() {
+    setIsChanged(true);
+  }
 
   function handleSubmit() {
     if (imageName !== null) {
