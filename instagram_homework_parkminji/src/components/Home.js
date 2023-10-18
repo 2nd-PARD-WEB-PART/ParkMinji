@@ -179,9 +179,10 @@ const CommentContainer = styled.div`
 
 const Comment = styled.div`
   display: flex;
+  align-items: center;
   box-sizing: border-box;
   width: 614px;
-  height: 35px;
+  height: 34px;
   padding: 0px 0px 16px 16px;
 `;
 
@@ -312,6 +313,13 @@ export default function Home(props) {
     ]);
   };
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      pushCommentList();
+      setContent("");
+    }
+  };
+
   function likeFunction(num) {
     if (isLikeChanged) {
       props.modifydata(Number(num) - 1, "like_num");
@@ -395,6 +403,7 @@ export default function Home(props) {
                   placeholder="댓글달기..."
                   value={content === "" ? "" : content}
                   onChange={saveComment}
+                  onKeyPress={onKeyPress}
                 ></WriteCommentInput>
                 <SubmitComment
                   onClick={() => {
