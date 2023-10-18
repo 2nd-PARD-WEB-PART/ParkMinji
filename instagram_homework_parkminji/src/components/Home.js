@@ -31,7 +31,7 @@ const FeedContainer = styled.div`
   /* box-sizing 쓰면 padding 써도 크기 증가 안함 */
   box-sizing: border-box;
   width: 642px;
-  height: 903px;
+  /* height: 903px; */
   padding: 0px 28px 24px 0px;
 `;
 
@@ -101,7 +101,7 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   width: 614px;
-  height: 205px;
+  /* height: 205px; */
 `;
 
 const FooterIconContainer = styled.div`
@@ -167,6 +167,46 @@ const Time = styled.div`
   line-height: 18px; /* 180% */
   letter-spacing: 0.2px;
   text-transform: uppercase;
+`;
+
+const CommentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 614px;
+  height: 100%;
+`;
+
+const Comment = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  width: 614px;
+  height: 35px;
+  padding: 0px 0px 16px 16px;
+`;
+
+const UserIdInComment = styled.div`
+  box-sizing: border-box;
+  width: 112px;
+  height: 18px;
+  color: rgba(0, 0, 0, 0.71);
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+`;
+
+const ContentsInComment = styled.div`
+  box-sizing: border-box;
+  width: 431px;
+  height: 18px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
 `;
 
 const WriteCommentContainer = styled.div`
@@ -254,6 +294,23 @@ const ProfileName = styled.div`
 
 export default function Home(props) {
   const [isLikeChanged, setIsLikeChanged] = useState(props.data.is_like);
+  const [commentList, setCommentList] = useState([]);
+  const [content, setContent] = useState("");
+
+  const saveComment = (e) => {
+    setContent(e.target.value);
+  };
+
+  const pushCommentList = () => {
+    setCommentList([
+      ...commentList,
+      {
+        id: commentList.length + 1,
+        user: props.data.name,
+        contents: content,
+      },
+    ]);
+  };
 
   function likeFunction(num) {
     if (isLikeChanged) {
@@ -313,12 +370,22 @@ export default function Home(props) {
                 좋아요 {props.data.like_num}개
               </LikeNumContainer>
               <FeedTextContainer>
-                <FeedText>{props.data.feed_name}</FeedText>
-                <FeedText style={{ width: "470px" }}>
-                  {props.data.feed_text}
-                </FeedText>
+                <FeedText>handsomeguy</FeedText>
+                <FeedText style={{ width: "470px" }}>파드 파이팅!!</FeedText>
               </FeedTextContainer>
-              <Time>1 hour ago</Time>
+              {commentList.length === 0 ? (
+                <Time>1 hour ago</Time>
+              ) : (
+                <CommentContainer>
+                  {commentList.map((iter) => (
+                    <Comment key={iter.id}>
+                      <UserIdInComment>{iter.user}</UserIdInComment>
+                      <ContentsInComment>{iter.contents}</ContentsInComment>
+                    </Comment>
+                  ))}
+                </CommentContainer>
+              )}
+
               <WriteCommentContainer>
                 <WriteImg
                   src={process.env.PUBLIC_URL + "/img/Emoji.svg"}
@@ -326,8 +393,17 @@ export default function Home(props) {
                 <WriteCommentInput
                   type="text"
                   placeholder="댓글달기..."
+                  value={content === "" ? "" : content}
+                  onChange={saveComment}
                 ></WriteCommentInput>
-                <SubmitComment>게시</SubmitComment>
+                <SubmitComment
+                  onClick={() => {
+                    pushCommentList();
+                    setContent("");
+                  }}
+                >
+                  게시
+                </SubmitComment>
               </WriteCommentContainer>
             </Footer>
           </FeedContainer>

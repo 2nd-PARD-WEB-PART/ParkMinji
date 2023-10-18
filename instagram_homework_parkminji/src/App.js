@@ -14,13 +14,8 @@ function App() {
     web_link: "",
     email: "",
     sex: "",
-    feed_name: "handsomeguy",
-    feed_profile_img: "/img/profile_img.png",
-    feed_img: "/img/235.png",
-    feed_text: "파드 파이팅!!",
     is_like: false,
     like_num: "1069",
-    comment: [],
   };
 
   const [userData, setUserData] = useState(data);
