@@ -259,18 +259,6 @@ export default function EditProfile(props) {
     setIsChanged(hasChanged);
   }, [name, intro, web, email, sex, props.data]);
 
-  // function change() {
-  //   let change_num = 0;
-  //   if (name === props.data.name) change_num++;
-  //   if (intro === props.data.intro) change_num++;
-  //   if (web === props.data.web_link) change_num++;
-  //   if (email === props.data.email) change_num++;
-  //   if (sex === props.data.sex) change_num++;
-  //   // console.log(name);
-  //   if (change_num < 5) setIsChanged(true);
-  //   else setIsChanged(false);
-  // }
-
   function handleSubmit() {
     if (imageName !== null) {
       props.modifydata(imageName, "profile_img");
@@ -343,8 +331,6 @@ export default function EditProfile(props) {
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
-                  // console.log(name);
-                  // change();
                 }}
               ></InputText>
             </FormBox>
@@ -356,7 +342,6 @@ export default function EditProfile(props) {
                 style={{ height: "64px" }}
                 onChange={(e) => {
                   setIntro(e.target.value);
-                  // change();
                 }}
               ></InputTextarea>
             </FormBox>
@@ -367,7 +352,6 @@ export default function EditProfile(props) {
                 value={web}
                 onChange={(e) => {
                   setWeb(e.target.value);
-                  // change();
                 }}
               ></InputText>
             </FormBox>
@@ -378,7 +362,6 @@ export default function EditProfile(props) {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  // change();
                 }}
               ></InputText>
             </FormBox>
@@ -389,7 +372,6 @@ export default function EditProfile(props) {
                 value={sex}
                 onChange={(e) => {
                   setSex(e.target.value);
-                  // change();
                 }}
               ></InputText>
             </FormBox>
