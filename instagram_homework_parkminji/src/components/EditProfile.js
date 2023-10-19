@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MainBar from "./MainBar";
 import { Link } from "react-router-dom";
@@ -238,12 +238,38 @@ export default function EditProfile(props) {
     const imageUrl = URL.createObjectURL(file);
     setImageSrc(imageUrl);
     setImageName(file.name);
-    change();
+    setIsChanged(true);
   };
 
-  function change() {
-    setIsChanged(true);
-  }
+  useEffect(() => {
+    // 모든 입력 필드의 변경 여부를 모니터링
+    const fields = [name, intro, web, email, sex];
+    const originalFields = [
+      props.data.name,
+      props.data.intro,
+      props.data.web_link,
+      props.data.email,
+      props.data.sex,
+    ];
+
+    const hasChanged = fields.some(
+      (field, index) => field !== originalFields[index]
+    );
+
+    setIsChanged(hasChanged);
+  }, [name, intro, web, email, sex, props.data]);
+
+  // function change() {
+  //   let change_num = 0;
+  //   if (name === props.data.name) change_num++;
+  //   if (intro === props.data.intro) change_num++;
+  //   if (web === props.data.web_link) change_num++;
+  //   if (email === props.data.email) change_num++;
+  //   if (sex === props.data.sex) change_num++;
+  //   // console.log(name);
+  //   if (change_num < 5) setIsChanged(true);
+  //   else setIsChanged(false);
+  // }
 
   function handleSubmit() {
     if (imageName !== null) {
@@ -317,7 +343,8 @@ export default function EditProfile(props) {
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
-                  change();
+                  // console.log(name);
+                  // change();
                 }}
               ></InputText>
             </FormBox>
@@ -329,7 +356,7 @@ export default function EditProfile(props) {
                 style={{ height: "64px" }}
                 onChange={(e) => {
                   setIntro(e.target.value);
-                  change();
+                  // change();
                 }}
               ></InputTextarea>
             </FormBox>
@@ -340,7 +367,7 @@ export default function EditProfile(props) {
                 value={web}
                 onChange={(e) => {
                   setWeb(e.target.value);
-                  change();
+                  // change();
                 }}
               ></InputText>
             </FormBox>
@@ -351,7 +378,7 @@ export default function EditProfile(props) {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  change();
+                  // change();
                 }}
               ></InputText>
             </FormBox>
@@ -362,7 +389,7 @@ export default function EditProfile(props) {
                 value={sex}
                 onChange={(e) => {
                   setSex(e.target.value);
-                  change();
+                  // change();
                 }}
               ></InputText>
             </FormBox>
