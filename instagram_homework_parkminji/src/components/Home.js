@@ -210,6 +210,11 @@ const ContentsInComment = styled.div`
   line-height: 18px; /* 128.571% */
 `;
 
+const CommentLikeIcon = styled.img`
+  width: 14px;
+  height: 14px;
+`;
+
 const WriteCommentContainer = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -294,7 +299,7 @@ const ProfileName = styled.div`
 `;
 
 export default function Home(props) {
-  const [isLikeChanged, setIsLikeChanged] = useState(props.data.is_like);
+  const [isLikeChanged, setIsLikeChanged] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState("");
 
@@ -309,6 +314,7 @@ export default function Home(props) {
         id: commentList.length + 1,
         user: props.data.name,
         contents: content,
+        islike: false,
       },
     ]);
   };
@@ -320,15 +326,25 @@ export default function Home(props) {
     }
   };
 
-  function likeFunction(num) {
+  function HandleLikeChange() {
     if (isLikeChanged) {
-      props.modifydata(Number(num) - 1, "like_num");
+      props.modifydata(Number(props.data.like_num) - 1, "like_num");
       props.modifydata(!props.data.is_like, "is_like");
     } else {
-      props.modifydata(Number(num) + 1, "like_num");
+      props.modifydata(Number(props.data.like_num) + 1, "like_num");
       props.modifydata(!props.data.is_like, "is_like");
     }
+    setIsLikeChanged(!isLikeChanged);
   }
+
+  const onLikeChange = (targetId) => {
+    setCommentList(
+      commentList.map((it) =>
+        it.id === targetId ? { ...it, islike: !it.islike } : it
+      )
+    );
+  };
+
   return (
     <div>
       <MainBar data={props.data} />
@@ -350,21 +366,15 @@ export default function Home(props) {
             <FeedImg src={process.env.PUBLIC_URL + "/img/235.png"} />
             <Footer>
               <FooterIconContainer>
-                {isLikeChanged ? (
+                {props.data.is_like ? (
                   <FooterIcon
                     src={process.env.PUBLIC_URL + "/img/Fill_Like.svg"}
-                    onClick={() => {
-                      likeFunction(props.data.like_num);
-                      setIsLikeChanged(false);
-                    }}
+                    onClick={HandleLikeChange}
                   />
                 ) : (
                   <FooterIcon
                     src={process.env.PUBLIC_URL + "/img/Like.svg"}
-                    onClick={() => {
-                      likeFunction(props.data.like_num);
-                      setIsLikeChanged(true);
-                    }}
+                    onClick={HandleLikeChange}
                   />
                 )}
                 <FooterIcon src={process.env.PUBLIC_URL + "/img/Comment.svg"} />
@@ -389,6 +399,23 @@ export default function Home(props) {
                     <Comment key={iter.id}>
                       <UserIdInComment>{iter.user}</UserIdInComment>
                       <ContentsInComment>{iter.contents}</ContentsInComment>
+                      {iter.islike ? (
+                        <CommentLikeIcon
+                          src={
+                            process.env.PUBLIC_URL + "/img/small_like_fill.svg"
+                          }
+                          onClick={() => {
+                            onLikeChange(iter.id);
+                          }}
+                        ></CommentLikeIcon>
+                      ) : (
+                        <CommentLikeIcon
+                          src={process.env.PUBLIC_URL + "/img/small_like.svg"}
+                          onClick={() => {
+                            onLikeChange(iter.id);
+                          }}
+                        ></CommentLikeIcon>
+                      )}
                     </Comment>
                   ))}
                 </CommentContainer>
@@ -407,7 +434,9 @@ export default function Home(props) {
                 ></WriteCommentInput>
                 <SubmitComment
                   onClick={() => {
-                    pushCommentList();
+                    if (content.length > 0) {
+                      pushCommentList();
+                    }
                     setContent("");
                   }}
                 >

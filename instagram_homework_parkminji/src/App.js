@@ -26,7 +26,7 @@ function App() {
     if (field === "profile_img") {
       newValue = "/img/" + String(e);
     } else if (field === "is_like") {
-      newValue = String(e);
+      newValue = e;
     } else if (field === "like_num") {
       newValue = e;
       //   console.log(newValue);
