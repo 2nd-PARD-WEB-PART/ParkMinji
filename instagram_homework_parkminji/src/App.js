@@ -15,7 +15,7 @@ function App() {
     email: "",
     sex: "",
     is_like: false,
-    like_num: "1069",
+    like_num: 1069,
   };
 
   const [userData, setUserData] = useState(data);

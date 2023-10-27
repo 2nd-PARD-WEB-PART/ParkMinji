@@ -328,10 +328,10 @@ export default function Home(props) {
 
   function HandleLikeChange() {
     if (isLikeChanged) {
-      props.modifydata(Number(props.data.like_num) - 1, "like_num");
+      props.modifydata(props.data.like_num - 1, "like_num");
       props.modifydata(!props.data.is_like, "is_like");
     } else {
-      props.modifydata(Number(props.data.like_num) + 1, "like_num");
+      props.modifydata(props.data.like_num + 1, "like_num");
       props.modifydata(!props.data.is_like, "is_like");
     }
     setIsLikeChanged(!isLikeChanged);
