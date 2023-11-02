@@ -5,6 +5,7 @@ import EditProfile from "./components/EditProfile";
 import MyPage from "./components/MyPage";
 import Home from "./components/Home";
 import { useState } from "react";
+import { MydataContext } from "./context/MydataContext";
 
 function App() {
   let data = {
@@ -39,19 +40,15 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MyPage data={userData} />} />
-        <Route
-          path="/edit_profile"
-          element={<EditProfile data={userData} modifydata={modifyUSerData} />}
-        />
-        <Route
-          path="/home"
-          element={<Home data={userData} modifydata={modifyUSerData} />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <MydataContext.Provider value={{ userData, modifyUSerData }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MyPage />} />
+          <Route path="/edit_profile" element={<EditProfile />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </MydataContext.Provider>
   );
 }
 

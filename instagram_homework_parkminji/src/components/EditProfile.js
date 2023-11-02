@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import MainBar from "./MainBar";
 import { Link } from "react-router-dom";
+import { MydataContext } from "../context/MydataContext";
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -214,16 +215,15 @@ const SubmitButton = styled.div`
   margin-right: 437px;
 `;
 
-export default function EditProfile(props) {
+export default function EditProfile() {
+  const { userData, modifyUSerData } = useContext(MydataContext);
   const [imageSrc, setImageSrc] = useState(null);
   const [imageName, setImageName] = useState(null);
-  const [name, setName] = useState(props.data.name ? props.data.name : "");
-  const [intro, setIntro] = useState(props.data.intro ? props.data.intro : "");
-  const [web, setWeb] = useState(
-    props.data.web_link ? props.data.web_link : ""
-  );
-  const [email, setEmail] = useState(props.data.email ? props.data.email : "");
-  const [sex, setSex] = useState(props.data.sex ? props.data.sex : "");
+  const [name, setName] = useState(userData.name ? userData.name : "");
+  const [intro, setIntro] = useState(userData.intro ? userData.intro : "");
+  const [web, setWeb] = useState(userData.web_link ? userData.web_link : "");
+  const [email, setEmail] = useState(userData.email ? userData.email : "");
+  const [sex, setSex] = useState(userData.sex ? userData.sex : "");
   const [isChanged, setIsChanged] = useState(false);
 
   const fileInput = React.createRef();
@@ -245,11 +245,11 @@ export default function EditProfile(props) {
     // 모든 입력 필드의 변경 여부를 모니터링
     const fields = [name, intro, web, email, sex];
     const originalFields = [
-      props.data.name,
-      props.data.intro,
-      props.data.web_link,
-      props.data.email,
-      props.data.sex,
+      userData.name,
+      userData.intro,
+      userData.web_link,
+      userData.email,
+      userData.sex,
     ];
 
     const hasChanged = fields.some(
@@ -257,32 +257,32 @@ export default function EditProfile(props) {
     );
 
     setIsChanged(hasChanged);
-  }, [name, intro, web, email, sex, props.data]);
+  }, [name, intro, web, email, sex, userData]);
 
   function handleSubmit() {
     if (imageName !== null) {
-      props.modifydata(imageName, "profile_img");
+      modifyUSerData(imageName, "profile_img");
     }
     if (name !== "") {
-      props.modifydata(name, "name");
+      modifyUSerData(name, "name");
     }
     if (intro !== "") {
-      props.modifydata(intro, "intro");
+      modifyUSerData(intro, "intro");
     }
     if (web !== "") {
-      props.modifydata(web, "web_link");
+      modifyUSerData(web, "web_link");
     }
     if (email !== "") {
-      props.modifydata(email, "email");
+      modifyUSerData(email, "email");
     }
     if (sex !== "") {
-      props.modifydata(sex, "sex");
+      modifyUSerData(sex, "sex");
     }
   }
 
   return (
     <div>
-      <MainBar data={props.data} />
+      <MainBar />
       <Container>
         <MainForm>
           <LeftEditContainer>
@@ -311,10 +311,10 @@ export default function EditProfile(props) {
               {imageSrc ? (
                 <ProfileImg src={imageSrc} />
               ) : (
-                <ProfileImg src={props.data.profile_img} />
+                <ProfileImg src={userData.profile_img} />
               )}
               <ProfileSecondContainer>
-                <UserName>{props.data.name}</UserName>
+                <UserName>{userData.name}</UserName>
                 <Button onClick={handleButtonClick}>프로필 사진 바꾸기</Button>
                 <input
                   type="file"

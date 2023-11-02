@@ -2,12 +2,12 @@ import MainBar from "./MainBar";
 import Profile from "./Profile";
 import Post from "./Post";
 
-export default function MyPage(props) {
+export default function MyPage() {
   return (
     <div>
-      <MainBar data={props.data} />
-      <Profile data={props.data}></Profile>
-      <Post data={props.data}></Post>
+      <MainBar />
+      <Profile />
+      <Post />
     </div>
   );
 }

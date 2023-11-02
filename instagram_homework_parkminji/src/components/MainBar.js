@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { MydataContext } from "../context/MydataContext";
 
 const MainHr = styled.hr`
   border: 0.5px solid #efefef;
@@ -39,7 +40,8 @@ const MenuImage = styled.img`
   margin-right: 0px;
 `;
 
-export default function MainBar(props) {
+export default function MainBar() {
+  const { userData } = useContext(MydataContext);
   return (
     <>
       <div>
@@ -55,7 +57,7 @@ export default function MainBar(props) {
             <MenuImage src={process.env.PUBLIC_URL + "/img/ActivityFeed.svg"} />
             <Link to="/">
               <MenuImage
-                src={props.data.profile_img}
+                src={userData.profile_img}
                 style={{ borderRadius: 100 }}
               />
             </Link>

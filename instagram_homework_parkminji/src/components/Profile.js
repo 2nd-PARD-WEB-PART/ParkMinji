@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { MydataContext } from "../context/MydataContext";
 
 const MainContainer = styled.div`
   width: 945px;
@@ -111,16 +113,17 @@ const Intro = styled.div`
   word-wrap: break-word;
 `;
 
-export default function Profile(props) {
+export default function Profile() {
+  const { userData } = useContext(MydataContext);
   return (
     <>
       <MainContainer>
         <Link to="/edit_profile">
-          <ProfileImg src={props.data.profile_img} />
+          <ProfileImg src={userData.profile_img} />
         </Link>
         <SubContainer>
           <SecondContainer>
-            <Name>{props.data.name}</Name>
+            <Name>{userData.name}</Name>
             <Link to="/edit_profile">
               <Button>프로필 편집</Button>
             </Link>
@@ -137,7 +140,7 @@ export default function Profile(props) {
             <MiddleNumber>525</MiddleNumber>
           </MiddleContainer>
           <ThirdContainer>
-            <Intro>{props.data.intro}</Intro>
+            <Intro>{userData.intro}</Intro>
           </ThirdContainer>
         </SubContainer>
       </MainContainer>

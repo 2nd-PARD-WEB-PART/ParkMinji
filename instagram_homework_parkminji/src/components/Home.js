@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MainBar from "./MainBar";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { MydataContext } from "../context/MydataContext";
 
 const MainContainer = styled.div`
   display: flex;
@@ -298,7 +299,8 @@ const ProfileName = styled.div`
   text-transform: lowercase;
 `;
 
-export default function Home(props) {
+export default function Home() {
+  const { userData, modifyUSerData } = useContext(MydataContext);
   const [isLikeChanged, setIsLikeChanged] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState("");
@@ -312,7 +314,7 @@ export default function Home(props) {
       ...commentList,
       {
         id: commentList.length + 1,
-        user: props.data.name,
+        user: userData.name,
         contents: content,
         islike: false,
       },
@@ -328,11 +330,11 @@ export default function Home(props) {
 
   function HandleLikeChange() {
     if (isLikeChanged) {
-      props.modifydata(props.data.like_num - 1, "like_num");
-      props.modifydata(!props.data.is_like, "is_like");
+      modifyUSerData(userData.like_num - 1, "like_num");
+      modifyUSerData(!userData.is_like, "is_like");
     } else {
-      props.modifydata(props.data.like_num + 1, "like_num");
-      props.modifydata(!props.data.is_like, "is_like");
+      modifyUSerData(userData.like_num + 1, "like_num");
+      modifyUSerData(!userData.is_like, "is_like");
     }
     setIsLikeChanged(!isLikeChanged);
   }
@@ -347,7 +349,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <MainBar data={props.data} />
+      <MainBar />
       <MainContainer>
         <PostContainer>
           <FeedContainer>
@@ -366,7 +368,7 @@ export default function Home(props) {
             <FeedImg src={process.env.PUBLIC_URL + "/img/235.png"} />
             <Footer>
               <FooterIconContainer>
-                {props.data.is_like ? (
+                {userData.is_like ? (
                   <FooterIcon
                     src={process.env.PUBLIC_URL + "/img/Fill_Like.svg"}
                     onClick={HandleLikeChange}
@@ -384,9 +386,7 @@ export default function Home(props) {
                 <div style={{ width: "428px" }}></div>
                 <FooterIcon src={process.env.PUBLIC_URL + "/img/Save2.svg"} />
               </FooterIconContainer>
-              <LikeNumContainer>
-                좋아요 {props.data.like_num}개
-              </LikeNumContainer>
+              <LikeNumContainer>좋아요 {userData.like_num}개</LikeNumContainer>
               <FeedTextContainer>
                 <FeedText>handsomeguy</FeedText>
                 <FeedText style={{ width: "470px" }}>파드 파이팅!!</FeedText>
@@ -448,8 +448,8 @@ export default function Home(props) {
         </PostContainer>
         <ProfileContainer>
           <ProfileBox>
-            <ProfileImg src={props.data.profile_img}></ProfileImg>
-            <ProfileName>{props.data.name}</ProfileName>
+            <ProfileImg src={userData.profile_img}></ProfileImg>
+            <ProfileName>{userData.name}</ProfileName>
           </ProfileBox>
         </ProfileContainer>
       </MainContainer>
