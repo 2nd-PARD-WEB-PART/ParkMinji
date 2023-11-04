@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+// 해당 컴포넌트에서는 MydataContext와 MediaQueryContext context가 사용되기 때문에 import하여 create한 context를 불러온다.
 import { MydataContext } from "../context/MydataContext";
 import { MediaQueryContext } from "../context/MediaQueryContext";
 
@@ -59,8 +60,12 @@ const SearchContaincer = styled.div`
 `;
 
 export default function MainBar() {
+  // App.js 에서 넣어준 MydataContext 데이터 저장
   const { userData } = useContext(MydataContext);
+  // 반응형을 위한 width에 따른 해상도 구분context
   const { isPc, isTablet } = useContext(MediaQueryContext);
+
+  // 반응형 웹을 위해서 style의 삼항연산자를 이용하여 MediaQueryContext에서 가져온 해상도 값의 유무를 통해 스타일을 적용해주었다.
   return (
     <>
       <div>

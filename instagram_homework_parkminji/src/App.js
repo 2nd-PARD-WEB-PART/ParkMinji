@@ -5,9 +5,9 @@ import EditProfile from "./components/EditProfile";
 import MyPage from "./components/MyPage";
 import Home from "./components/Home";
 import { useState } from "react";
-import { MydataContext } from "./context/MydataContext";
-import { MediaQueryContext } from "./context/MediaQueryContext";
-import { useMediaQuery } from "react-responsive";
+import { MydataContext } from "./context/MydataContext"; //for Context
+import { MediaQueryContext } from "./context/MediaQueryContext"; //for Context
+import { useMediaQuery } from "react-responsive"; // for 반응형 웹
 
 function App() {
   // isPc, isTablet, isMobile이라는 변수를 사용하여 특정 width일 때의 선택될 수 있는 화면을 정의한다.
@@ -53,7 +53,8 @@ function App() {
   };
 
   return (
-    // context API를 만들어서 모든 컴포넌트에서
+    // context API를 만들어서 모든 컴포넌트에서 해상도 조정시 반응형 웹으로 조정할 수 있도록 정해놓은 특정 값들을 보내준다.
+    // 총 사용되는 Context API는 반응형 웹을 위한 MediaQueryContext와 instagram 데이터를 저장해놓은 MydataContext이다.
     <MediaQueryContext.Provider value={{ isPc, isTablet, isMobile }}>
       <MydataContext.Provider value={{ userData, modifyUSerData }}>
         <BrowserRouter>

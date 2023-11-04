@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MainBar from "./MainBar";
 import React, { useContext, useState } from "react";
+// 해당 컴포넌트에서는 MydataContext와 MediaQueryContext context가 사용되기 때문에 import하여 create한 context를 불러온다.
 import { MydataContext } from "../context/MydataContext";
 import { MediaQueryContext } from "../context/MediaQueryContext";
 import { Link } from "react-router-dom";
@@ -46,7 +47,6 @@ const Header = styled.div`
   height: 60px;
   align-items: center;
   border: 1px solid #efefef;
-  margin: ;
 `;
 
 const HeaderProfile = styled.div`
@@ -327,6 +327,7 @@ const ProfileImg2 = styled.img`
 `;
 
 export default function Home() {
+  // App.js 에서 넣어준 MydataContext 데이터 저장
   const { userData, modifyUSerData } = useContext(MydataContext);
   // 반응형을 위한 width에 따른 해상도 구분context
   const { isPc, isTablet } = useContext(MediaQueryContext);
@@ -376,6 +377,7 @@ export default function Home() {
     );
   };
 
+  // 반응형 웹을 위해서 style의 삼항연산자를 이용하여 MediaQueryContext에서 가져온 해상도 값의 유무를 통해 스타일을 적용해주었다.
   return (
     <div>
       <MainBar />
