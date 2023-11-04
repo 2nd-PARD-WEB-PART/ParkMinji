@@ -23,9 +23,19 @@ Netlify를 사용하여 post한 링크입니다.
   </li>
 </ol>
 
-### 🔗Built with
+### Built with
 - React
 - java script
+
+### 사용된 라이브러리
+- react-router-rom
+- styled-component
+
+### 데이터 관리
+- Context API
+
+### 반응형 웹 구현
+- MediaQuery 사용
 
 ### 🏃🏻Getting Started!
 1. React 설치
@@ -39,6 +49,10 @@ Netlify를 사용하여 post한 링크입니다.
    - react-router-dom 설치
      ```sh
      $ npm i react-router-dom
+     ```
+   - react responsive 설치
+     ```sh
+     $ npm install react-responsive
      ```
 5. root위치에서 프로젝트를 start합니다.
    - 페이지 띄우기
