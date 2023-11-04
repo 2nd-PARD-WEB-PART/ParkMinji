@@ -2,13 +2,15 @@ import styled from "styled-components";
 import MainBar from "./MainBar";
 import React, { useContext, useState } from "react";
 import { MydataContext } from "../context/MydataContext";
+import { MediaQueryContext } from "../context/MediaQueryContext";
+import { Link } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
   width: 945px;
   height: calc(100vh - 53px);
   margin: 0 auto;
-  /* border: 1px solid; */
+  align-items: center;
 `;
 
 const PostContainer = styled.div`
@@ -17,8 +19,8 @@ const PostContainer = styled.div`
   box-sizing: border-box;
   width: 642px;
   height: 100%;
-  /* border: 1px solid blue; */
   padding-top: 139.15px;
+  align-items: center;
   overflow: scroll;
   flex-shrink: 0;
 
@@ -44,6 +46,7 @@ const Header = styled.div`
   height: 60px;
   align-items: center;
   border: 1px solid #efefef;
+  margin: ;
 `;
 
 const HeaderProfile = styled.div`
@@ -234,7 +237,7 @@ const WriteImg = styled.img`
 
 const WriteCommentInput = styled.input`
   box-sizing: border-box;
-  width: 509px;
+  width: 490px;
   height: 40px;
   padding-left: 17px;
   color: #000;
@@ -249,7 +252,7 @@ const WriteCommentInput = styled.input`
 `;
 
 const SubmitComment = styled.button`
-  width: 26px;
+  width: 40px;
   height: 40px;
   color: #0095f6;
   font-family: Noto Sans KR;
@@ -263,9 +266,21 @@ const SubmitComment = styled.button`
   padding: 0px;
 `;
 
-const ProfileContainer = styled.div`
+const ProfileContainer1 = styled.div`
   width: 293px;
   height: 100%;
+`;
+
+const ProfileContainer2 = styled.div`
+  box-sizing: border-box;
+  width: 95%;
+  height: 53px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 이미지 사이의 간격을 최대화합니다. */
+  margin: -10px;
+  padding: 0px 30px 0px 30px;
+  border-top: 1px solid #efefef;
 `;
 
 const ProfileBox = styled.div`
@@ -299,8 +314,22 @@ const ProfileName = styled.div`
   text-transform: lowercase;
 `;
 
+const MenuImage = styled.img`
+  width: 17px;
+  height: 17px;
+`;
+
+const ProfileImg2 = styled.img`
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+`;
+
 export default function Home() {
   const { userData, modifyUSerData } = useContext(MydataContext);
+  // 반응형을 위한 width에 따른 해상도 구분context
+  const { isPc, isTablet, isMobile } = useContext(MediaQueryContext);
   const [isLikeChanged, setIsLikeChanged] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState("");
@@ -350,10 +379,29 @@ export default function Home() {
   return (
     <div>
       <MainBar />
-      <MainContainer>
-        <PostContainer>
-          <FeedContainer>
-            <Header>
+      <MainContainer
+        style={{
+          flexDirection: isPc ? "row" : "column",
+          width: isPc ? "100vh" : "95%",
+        }}
+      >
+        <PostContainer
+          style={{
+            height: isPc ? "100%" : `calc(100% - 53px)`,
+            width: isPc ? "642px" : "95%",
+          }}
+        >
+          <FeedContainer
+            style={{
+              width: isPc ? "642px" : "95%",
+              padding: isPc ? "0px 28px 24px 0px" : "0px",
+            }}
+          >
+            <Header
+              style={{
+                width: isPc ? "100%" : "95%",
+              }}
+            >
               <HeaderProfile>
                 <HeaderProfileBorder
                   src={process.env.PUBLIC_URL + "/img/Ellipse.svg"}
@@ -362,43 +410,134 @@ export default function Home() {
                   src={process.env.PUBLIC_URL + "/img/profile_img.png"}
                 />
               </HeaderProfile>
-              <HeaderProfileName>handsomeguy</HeaderProfileName>
+              <HeaderProfileName
+                style={{
+                  width: isPc ? "506px" : "70%",
+                  fontSize: isPc ? "14px" : "12px",
+                }}
+              >
+                handsomeguy
+              </HeaderProfileName>
               <HeaderOption src={process.env.PUBLIC_URL + "/img/More.svg"} />
             </Header>
-            <FeedImg src={process.env.PUBLIC_URL + "/img/235.png"} />
-            <Footer>
-              <FooterIconContainer>
+            <FeedImg
+              src={process.env.PUBLIC_URL + "/img/235.png"}
+              style={{
+                width: isPc ? "614px" : "95%",
+                height: isPc ? "614px" : "auto",
+              }}
+            />
+            <Footer style={{ width: isPc ? "614px" : "95%" }}>
+              <FooterIconContainer
+                style={{
+                  width: isPc ? "614px" : "100%",
+                  padding: isPc ? "6px 16px 8px 16px" : "6px 16px 8px 16px",
+                }}
+              >
                 {userData.is_like ? (
                   <FooterIcon
                     src={process.env.PUBLIC_URL + "/img/Fill_Like.svg"}
                     onClick={HandleLikeChange}
+                    style={{
+                      width: isPc || isTablet ? "24px" : "6%",
+                      height: isPc || isTablet ? "24px" : "auto",
+                    }}
                   />
                 ) : (
                   <FooterIcon
                     src={process.env.PUBLIC_URL + "/img/Like.svg"}
                     onClick={HandleLikeChange}
+                    style={{
+                      width: isPc || isTablet ? "24px" : "6%",
+                      height: isPc || isTablet ? "24px" : "auto",
+                    }}
                   />
                 )}
-                <FooterIcon src={process.env.PUBLIC_URL + "/img/Comment.svg"} />
+                <FooterIcon
+                  src={process.env.PUBLIC_URL + "/img/Comment.svg"}
+                  style={{
+                    width: isPc || isTablet ? "24px" : "6%",
+                    height: isPc || isTablet ? "24px" : "auto",
+                  }}
+                />
                 <FooterIcon
                   src={process.env.PUBLIC_URL + "/img/SharePosts.svg"}
+                  style={{
+                    width: isPc || isTablet ? "24px" : "6%",
+                    height: isPc || isTablet ? "24px" : "auto",
+                  }}
                 />
                 <div style={{ width: "428px" }}></div>
-                <FooterIcon src={process.env.PUBLIC_URL + "/img/Save2.svg"} />
+                <FooterIcon
+                  src={process.env.PUBLIC_URL + "/img/Save2.svg"}
+                  style={{
+                    width: isPc || isTablet ? "24px" : "6%",
+                    height: isPc || isTablet ? "24px" : "auto",
+                  }}
+                />
               </FooterIconContainer>
-              <LikeNumContainer>좋아요 {userData.like_num}개</LikeNumContainer>
-              <FeedTextContainer>
-                <FeedText>handsomeguy</FeedText>
-                <FeedText style={{ width: "470px" }}>파드 파이팅!!</FeedText>
+              <LikeNumContainer
+                style={{
+                  width: isPc ? "614px" : "100%",
+                  height: isPc || isTablet ? "18px" : "12px",
+                  fontSize: isPc || isTablet ? "14px" : "12px",
+                }}
+              >
+                좋아요 {userData.like_num}개
+              </LikeNumContainer>
+              <FeedTextContainer
+                style={{
+                  width: isPc || isTablet ? "614px" : "100%",
+                  height: isPc || isTablet ? "44px" : "44px",
+                }}
+              >
+                <FeedText
+                  style={{
+                    fontSize: isPc || isTablet ? "14px" : "12px",
+                  }}
+                >
+                  handsomeguy
+                </FeedText>
+                <FeedText
+                  style={{
+                    width: isPc || isTablet ? "470px" : "100%",
+                    fontSize: isPc || isTablet ? "14px" : "12px",
+                  }}
+                >
+                  파드 파이팅!!
+                </FeedText>
               </FeedTextContainer>
               {commentList.length === 0 ? (
-                <Time>1 hour ago</Time>
+                <Time style={{ width: isPc || isTablet ? "112px" : "100%" }}>
+                  1 hour ago
+                </Time>
               ) : (
-                <CommentContainer>
+                <CommentContainer style={{ width: isPc ? "614px" : "100%" }}>
                   {commentList.map((iter) => (
-                    <Comment key={iter.id}>
-                      <UserIdInComment>{iter.user}</UserIdInComment>
-                      <ContentsInComment>{iter.contents}</ContentsInComment>
+                    <Comment
+                      key={iter.id}
+                      style={{
+                        width: isPc ? "614px" : "100%",
+                        height: isPc ? "18px" : "12px",
+                        fontSize: isPc ? "14px" : "12px",
+                      }}
+                    >
+                      <UserIdInComment
+                        style={{
+                          width: isPc ? "112px" : "30%",
+                          fontSize: isPc ? "14px" : "12px",
+                        }}
+                      >
+                        {iter.user}
+                      </UserIdInComment>
+                      <ContentsInComment
+                        style={{
+                          width: isPc ? "431px" : "60%",
+                          fontSize: isPc ? "14px" : "12px",
+                        }}
+                      >
+                        {iter.contents}
+                      </ContentsInComment>
                       {iter.islike ? (
                         <CommentLikeIcon
                           src={
@@ -407,12 +546,20 @@ export default function Home() {
                           onClick={() => {
                             onLikeChange(iter.id);
                           }}
+                          style={{
+                            width: isPc || isTablet ? "14px" : "5%",
+                            height: isPc || isTablet ? "14px" : "auto",
+                          }}
                         ></CommentLikeIcon>
                       ) : (
                         <CommentLikeIcon
                           src={process.env.PUBLIC_URL + "/img/small_like.svg"}
                           onClick={() => {
                             onLikeChange(iter.id);
+                          }}
+                          style={{
+                            width: isPc || isTablet ? "14px" : "5%",
+                            height: isPc || isTablet ? "14px" : "auto",
                           }}
                         ></CommentLikeIcon>
                       )}
@@ -421,9 +568,17 @@ export default function Home() {
                 </CommentContainer>
               )}
 
-              <WriteCommentContainer>
+              <WriteCommentContainer style={{ width: isPc ? "614px" : "100%" }}>
                 <WriteImg
                   src={process.env.PUBLIC_URL + "/img/Emoji.svg"}
+                  style={{
+                    width: isPc || isTablet ? "24px" : "8%",
+                    height: isPc || isTablet ? "24px" : "auto",
+                    margin:
+                      isPc || isTablet
+                        ? "8px 16px 8px 0px"
+                        : "8px 10px 8px 0px",
+                  }}
                 ></WriteImg>
                 <WriteCommentInput
                   type="text"
@@ -431,6 +586,11 @@ export default function Home() {
                   value={content === "" ? "" : content}
                   onChange={saveComment}
                   onKeyPress={onKeyPress}
+                  style={{
+                    fontSize: isPc ? "14px" : "8%",
+                    paddingLeft: isPc ? "17px" : "5%",
+                    width: isPc ? "490px" : "80%",
+                  }}
                 ></WriteCommentInput>
                 <SubmitComment
                   onClick={() => {
@@ -439,6 +599,7 @@ export default function Home() {
                     }
                     setContent("");
                   }}
+                  style={{ fontSize: isPc ? "12%" : "9%" }}
                 >
                   게시
                 </SubmitComment>
@@ -446,12 +607,24 @@ export default function Home() {
             </Footer>
           </FeedContainer>
         </PostContainer>
-        <ProfileContainer>
-          <ProfileBox>
-            <ProfileImg src={userData.profile_img}></ProfileImg>
-            <ProfileName>{userData.name}</ProfileName>
-          </ProfileBox>
-        </ProfileContainer>
+        {isPc ? (
+          <ProfileContainer1>
+            <ProfileBox>
+              <ProfileImg src={userData.profile_img}></ProfileImg>
+              <ProfileName>{userData.name}</ProfileName>
+            </ProfileBox>
+          </ProfileContainer1>
+        ) : isTablet ? (
+          <></>
+        ) : (
+          <ProfileContainer2>
+            <Link to="/home">
+              <MenuImage src={process.env.PUBLIC_URL + "/img/home-fill.svg"} />
+            </Link>
+            <MenuImage src={process.env.PUBLIC_URL + "/img/NewPosts.svg"} />
+            <ProfileImg2 src={userData.profile_img}></ProfileImg2>
+          </ProfileContainer2>
+        )}
       </MainContainer>
     </div>
   );

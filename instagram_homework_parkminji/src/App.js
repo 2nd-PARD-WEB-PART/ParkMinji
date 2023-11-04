@@ -6,8 +6,21 @@ import MyPage from "./components/MyPage";
 import Home from "./components/Home";
 import { useState } from "react";
 import { MydataContext } from "./context/MydataContext";
+import { MediaQueryContext } from "./context/MediaQueryContext";
+import { useMediaQuery } from "react-responsive";
 
 function App() {
+  // isPc, isTablet, isMobile이라는 변수를 사용하여 특정 width일 때의 선택될 수 있는 화면을 정의한다.
+  const isPc = useMediaQuery({
+    query: "(min-width:750px)",
+  });
+  const isTablet = useMediaQuery({
+    query: "(min-width:450px) and (max-width:749px)",
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width:449px)",
+  });
+
   let data = {
     name: "__min.zzi",
     profile_img: "/img/torrr.jpg",
@@ -40,15 +53,18 @@ function App() {
   };
 
   return (
-    <MydataContext.Provider value={{ userData, modifyUSerData }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MyPage />} />
-          <Route path="/edit_profile" element={<EditProfile />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </MydataContext.Provider>
+    // context API를 만들어서 모든 컴포넌트에서
+    <MediaQueryContext.Provider value={{ isPc, isTablet, isMobile }}>
+      <MydataContext.Provider value={{ userData, modifyUSerData }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MyPage />} />
+            <Route path="/edit_profile" element={<EditProfile />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </MydataContext.Provider>
+    </MediaQueryContext.Provider>
   );
 }
 
