@@ -30,5 +30,19 @@ Netlify를 사용하여 post한 링크입니다.
 ### 🏃🏻Getting Started!
 1. React 설치
 2. 프로젝트 Clone(원하는 위치에 해당 repository를 Clone 해주세요)
-3. 
+3. 개발환경 셋팅
+   
+   - styled-component 설치
+     ```sh
+     $ npm i styled-components
+     ```
+   - react-router-dom 설치
+     ```sh
+     $ npm i react-router-dom
+     ```
+5. root위치에서 프로젝트를 start합니다.
+   - 페이지 띄우기
+     ```sh
+     $ npm start
+     ```
 
