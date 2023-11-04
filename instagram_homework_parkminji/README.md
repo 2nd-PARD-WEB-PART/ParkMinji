@@ -19,8 +19,12 @@ Netlify를 사용하여 post한 링크입니다.
      <a href="#built-with">Built With</a>
   </li>
   <li>
+    <a href="#사용된-라이브러리">Getting Started!</a>
+  </li>
+  <li>
     <a href="#getting-started!">Getting Started!</a>
   </li>
+  
 </ol>
 
 ### Built with
@@ -30,6 +34,7 @@ Netlify를 사용하여 post한 링크입니다.
 ### 사용된 라이브러리
 - react-router-rom
 - styled-component
+- react-responsive
 
 ### 데이터 관리
 - Context API
