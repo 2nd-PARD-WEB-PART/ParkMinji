@@ -37,7 +37,7 @@ Netlify를 사용하여 post한 링크입니다.
 ### 반응형 웹 구현
 - MediaQuery 사용
 
-### 🏃🏻Getting Started!
+### Getting Started!
 1. React 설치
 2. 프로젝트 Clone(원하는 위치에 해당 repository를 Clone 해주세요)
 3. 개발환경 셋팅
