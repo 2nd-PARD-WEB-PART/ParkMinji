@@ -34,10 +34,10 @@ Netlify를 사용하여 post한 링크입니다.
 </details>
 
 ## 🧭 Nevigator
-- [Build with](#build-with)
+- [Built with](#build-with)
 - [Getting started](#getting-started!)
 
-# 📃 Build with
+# 📃 Built with
 - React
 - java script
 
