@@ -16,24 +16,18 @@ Netlify를 사용하여 post한 링크입니다.
 <h4>🧭 Nevigator</h4>
 <ol>
   <li>
-     <a href="#built-with">Built With</a>
+     <a href="#🔗built-with">Built With</a>
   </li>
   <li>
-    <a href="#getting-started!">Getting Started</a>
-    <ul>
-      <li><a href="#convention">Convention</a></li>
-      <li><a href="#commit-convention">Commit Convention</a></li>
-      <li><a href="#prerequisites">Prerequisites</a></li>
-      <li><a href="#installation">Installation</a></li>
-    </ul>
+    <a href="#🏃🏻getting-started!">Getting Started!</a>
   </li>
 </ol>
 
-### Built with
+### 🔗Built with
 - React
 - java script
 
-### Getting Started!
+### 🏃🏻Getting Started!
 1. React 설치
 2. 프로젝트 Clone(원하는 위치에 해당 repository를 Clone 해주세요)
 3. 
