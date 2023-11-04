@@ -16,13 +16,12 @@ Netlify를 사용하여 post한 링크입니다.
   <summary>🧭 Nevigator</summary>
   <ol>
     <li>
-      <!-- <a href="#about-the-project">About The Project</a> -->
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started!">Getting Started</a>
       <ul>
         <li><a href="#convention">Convention</a></li>
         <li><a href="#commit-convention">Commit Convention</a></li>
