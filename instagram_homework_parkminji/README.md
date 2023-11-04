@@ -13,7 +13,7 @@ Netlify를 사용하여 post한 링크입니다.
 <a href="https://meanstagram.netlify.app/">Instagram Clone page 접속하기</a>
 
 <details>
-  <summary>🧭 Nevigator</summary>
+  <h1>🧭 Nevigator</h1>
   <ol>
     <li>
       <ul>
@@ -31,10 +31,6 @@ Netlify를 사용하여 post한 링크입니다.
     </li>
   </ol>
 </details>
-
-## 🧭 Nevigator
-- [Built with](#build-with)
-- [Getting started](#getting-started!)
 
 # Built with
 - React
