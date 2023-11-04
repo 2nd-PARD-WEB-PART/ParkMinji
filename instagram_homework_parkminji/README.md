@@ -13,12 +13,10 @@ Netlify를 사용하여 post한 링크입니다.
 <a href="https://meanstagram.netlify.app/">Instagram Clone page 접속하기</a>
 
 
-<h1>🧭 Nevigator</h1>
+<h4>🧭 Nevigator</h4>
 <ol>
   <li>
-    <ul>
-      <li><a href="#built-with">Built With</a></li>
-    </ul>
+     <a href="#built-with">Built With</a>
   </li>
   <li>
     <a href="#getting-started!">Getting Started</a>
@@ -31,12 +29,11 @@ Netlify를 사용하여 post한 링크입니다.
   </li>
 </ol>
 
-
-# Built with
+### Built with
 - React
 - java script
 
-# Getting Started!
+### Getting Started!
 1. React 설치
 2. 프로젝트 Clone(원하는 위치에 해당 repository를 Clone 해주세요)
 3. 
