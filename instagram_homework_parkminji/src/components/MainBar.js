@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MydataContext } from "../context/MydataContext";
 import { MediaQueryContext } from "../context/MediaQueryContext";
-import { useMediaQuery } from "react-responsive";
 
 const MainHr = styled.hr`
   border: 0.5px solid #efefef;
@@ -61,7 +60,7 @@ const SearchContaincer = styled.div`
 
 export default function MainBar() {
   const { userData } = useContext(MydataContext);
-  const { isPc, isTablet, isMobile } = useContext(MediaQueryContext);
+  const { isPc, isTablet } = useContext(MediaQueryContext);
   return (
     <>
       <div>

@@ -329,7 +329,7 @@ const ProfileImg2 = styled.img`
 export default function Home() {
   const { userData, modifyUSerData } = useContext(MydataContext);
   // 반응형을 위한 width에 따른 해상도 구분context
-  const { isPc, isTablet, isMobile } = useContext(MediaQueryContext);
+  const { isPc, isTablet } = useContext(MediaQueryContext);
   const [isLikeChanged, setIsLikeChanged] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState("");
