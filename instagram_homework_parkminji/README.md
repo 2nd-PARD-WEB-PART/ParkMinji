@@ -22,6 +22,12 @@ Netlify를 사용하여 post한 링크입니다.
     <a href="#사용된-라이브러리">사용된 라이브러리</a>
   </li>
   <li>
+    <a href="#데이터-관리">데이터 관리</a>
+  </li>
+  <li>
+    <a href="#반응형-웹-구현">반응형 웹 구현</a>
+  </li>
+  <li>
     <a href="#getting-started">Getting Started!</a>
   </li>
   
