@@ -16,10 +16,10 @@ Netlify를 사용하여 post한 링크입니다.
 <h4>🧭 Nevigator</h4>
 <ol>
   <li>
-     <a href="#🔗built-with">Built With</a>
+     <a href="#built-with">Built With</a>
   </li>
   <li>
-    <a href="#🏃🏻getting-started!">Getting Started!</a>
+    <a href="#getting-started!">Getting Started!</a>
   </li>
 </ol>
 
