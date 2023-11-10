@@ -119,7 +119,7 @@ export default function Profile() {
     <>
       <MainContainer>
         <Link to="/edit_profile">
-          <ProfileImg src={userData.profile_img} />
+          <ProfileImg src={userData.imgURL} />
         </Link>
         <SubContainer>
           <SecondContainer>

@@ -298,7 +298,7 @@ export default function EditProfile() {
               {imageSrc ? (
                 <ProfileImg src={imageSrc} />
               ) : (
-                <ProfileImg src={userData.profile_img} />
+                <ProfileImg src={userData.imgURL} />
               )}
               <ProfileSecondContainer>
                 <UserName>{userData.name}</UserName>
