@@ -41,6 +41,7 @@ Netlify를 사용하여 post한 링크입니다.
 - react-router-rom
 - styled-component
 - react-responsive
+- axios
 
 ### 💽데이터 관리
 - Context API
@@ -66,6 +67,10 @@ Netlify를 사용하여 post한 링크입니다.
    - react responsive 설치
      ```sh
      $ npm install react-responsive
+     ```
+   - axios 설치
+     ```sh
+     $ npm install axios
      ```
 4️⃣ root위치에서 프로젝트를 start합니다.
    - 페이지 띄우기
