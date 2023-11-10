@@ -53,8 +53,9 @@ function App() {
 
   const modifyUSerData = (e, field) => {
     let newValue = e;
-    if (field === "profile_img") {
-      newValue = "/img/" + String(e);
+    if (field === "imgURL") {
+      newValue = String(e);
+      console.log(newValue);
     } else {
       newValue = e;
     }

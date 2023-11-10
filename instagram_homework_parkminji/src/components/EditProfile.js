@@ -231,13 +231,34 @@ export default function EditProfile() {
     fileInput.current.click();
   };
 
-  const onChangeImage = (e) => {
+  // 이미지 업로드를 위한 함수
+  const ImageUpload = (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+    // console.log(formData);
+    axios
+      .post("http://3.35.236.83/image", formData)
+      .then((response) => {
+        console.log("이미지가 성공적으로 업로드되었습니다:", response.data);
+        // 서버에서의 응답을 처리합니다.
+        // setImageSrc, Name을 해줘야 사진이 editprofile에서도 바뀜.
+        setImageSrc(response.data);
+        setIsChanged(true);
+      })
+      .catch((error) => {
+        console.error("이미지 업로드 중 오류 발생:", error);
+        // 오류를 처리합니다.
+      });
+  };
+
+  // 새로운 이미지가 클릭되었을 때 선택된 이미지를 file에 저장하고 서버에 업로드해준다.
+  const onChangeImage = async (e) => {
     const file = e.target.files[0];
     console.log(file.name);
-    const imageUrl = URL.createObjectURL(file);
-    setImageSrc(imageUrl);
-    setImageName(file.name);
-    setIsChanged(true);
+    if (file) {
+      const newImgURL = await ImageUpload(file);
+      console.log(newImgURL);
+    }
   };
 
   useEffect(() => {
@@ -253,8 +274,8 @@ export default function EditProfile() {
   }, [name, age, part, userData]);
 
   function handleSubmit() {
-    if (imageName !== null) {
-      modifyUSerData(imageName, "profile_img");
+    if (imageSrc !== null) {
+      modifyUSerData(imageSrc, "imgURL");
     }
     if (name !== "") {
       modifyUSerData(name, "name");
@@ -265,6 +286,17 @@ export default function EditProfile() {
     if (part !== "") {
       modifyUSerData(part, "part");
     }
+
+    console.log(imageSrc);
+    // 서버측에 업데이트
+    axios
+      .patch("http://3.35.236.83/pard/update/박민지", userData)
+      .then((response) => {
+        console.log("PATCH response:", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
