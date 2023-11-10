@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MainBar from "./MainBar";
 import { Link } from "react-router-dom";
 import { MydataContext } from "../context/MydataContext";
+import axios from "axios";
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -220,10 +221,8 @@ export default function EditProfile() {
   const [imageSrc, setImageSrc] = useState(null);
   const [imageName, setImageName] = useState(null);
   const [name, setName] = useState(userData.name ? userData.name : "");
-  const [intro, setIntro] = useState(userData.intro ? userData.intro : "");
-  const [web, setWeb] = useState(userData.web_link ? userData.web_link : "");
-  const [email, setEmail] = useState(userData.email ? userData.email : "");
-  const [sex, setSex] = useState(userData.sex ? userData.sex : "");
+  const [age, setAge] = useState(userData.age ? userData.age : "");
+  const [part, setPart] = useState(userData.part ? userData.part : "");
   const [isChanged, setIsChanged] = useState(false);
 
   const fileInput = React.createRef();
@@ -243,21 +242,15 @@ export default function EditProfile() {
 
   useEffect(() => {
     // 모든 입력 필드의 변경 여부를 모니터링
-    const fields = [name, intro, web, email, sex];
-    const originalFields = [
-      userData.name,
-      userData.intro,
-      userData.web_link,
-      userData.email,
-      userData.sex,
-    ];
+    const fields = [name, age, part];
+    const originalFields = [userData.name, userData.age, userData.part];
 
     const hasChanged = fields.some(
       (field, index) => field !== originalFields[index]
     );
 
     setIsChanged(hasChanged);
-  }, [name, intro, web, email, sex, userData]);
+  }, [name, age, part, userData]);
 
   function handleSubmit() {
     if (imageName !== null) {
@@ -266,17 +259,11 @@ export default function EditProfile() {
     if (name !== "") {
       modifyUSerData(name, "name");
     }
-    if (intro !== "") {
-      modifyUSerData(intro, "intro");
+    if (age !== "") {
+      modifyUSerData(age, "age");
     }
-    if (web !== "") {
-      modifyUSerData(web, "web_link");
-    }
-    if (email !== "") {
-      modifyUSerData(email, "email");
-    }
-    if (sex !== "") {
-      modifyUSerData(sex, "sex");
+    if (part !== "") {
+      modifyUSerData(part, "part");
     }
   }
 
@@ -334,44 +321,23 @@ export default function EditProfile() {
                 }}
               ></InputText>
             </FormBox>
-            <FormBox style={{ height: "64px" }}>
-              <InputName>소개</InputName>
-              <InputTextarea
-                type="text"
-                value={intro}
-                style={{ height: "64px" }}
-                onChange={(e) => {
-                  setIntro(e.target.value);
-                }}
-              ></InputTextarea>
-            </FormBox>
             <FormBox>
-              <InputName>웹사이트</InputName>
+              <InputName>나이</InputName>
               <InputText
                 type="text"
-                value={web}
+                value={age}
                 onChange={(e) => {
-                  setWeb(e.target.value);
+                  setAge(e.target.value);
                 }}
               ></InputText>
             </FormBox>
             <FormBox>
-              <InputName>이메일</InputName>
+              <InputName>파트</InputName>
               <InputText
                 type="text"
-                value={email}
+                value={part}
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              ></InputText>
-            </FormBox>
-            <FormBox>
-              <InputName>성별</InputName>
-              <InputText
-                type="text"
-                value={sex}
-                onChange={(e) => {
-                  setSex(e.target.value);
+                  setPart(e.target.value);
                 }}
               ></InputText>
             </FormBox>

@@ -24,10 +24,8 @@ function App() {
   let data = {
     name: "__min.zzi",
     profile_img: "/img/torrr.jpg",
-    intro: "서핑데이 기대된다!",
-    web_link: "",
-    email: "",
-    sex: "",
+    age: "19",
+    part: "Web",
     is_like: false,
     like_num: 1069,
   };
@@ -38,10 +36,6 @@ function App() {
     let newValue = e;
     if (field === "profile_img") {
       newValue = "/img/" + String(e);
-    } else if (field === "is_like") {
-      newValue = e;
-    } else if (field === "like_num") {
-      newValue = e;
     } else {
       newValue = e;
     }
