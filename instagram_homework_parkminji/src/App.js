@@ -40,7 +40,7 @@ function App() {
       try {
         axios.get("http://3.35.236.83/pard/search/박민지").then((response) => {
           //서버측 데이터 보면 실제 데이터는 response.data.data에 저장되어 있음.
-          console.log("response: " + JSON.stringify(response.data.data));
+          console.log("response: ", response.data.data);
           //데이터 업데이트.
           setUserData(response.data.data);
         });

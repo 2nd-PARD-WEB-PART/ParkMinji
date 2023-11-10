@@ -172,16 +172,6 @@ const InputText = styled.input`
   background: #fff;
 `;
 
-const InputTextarea = styled.textarea`
-  width: 355px;
-  height: 32px;
-  margin-left: 33px;
-  border-radius: 2px;
-  border: 1px solid #efefef;
-  background: #fff;
-  vertical-align: top;
-`;
-
 const NoSubmitButton = styled.div`
   width: 60px;
   height: 30px;
@@ -219,7 +209,6 @@ const SubmitButton = styled.div`
 export default function EditProfile() {
   const { userData, modifyUSerData } = useContext(MydataContext);
   const [imageSrc, setImageSrc] = useState(null);
-  const [imageName, setImageName] = useState(null);
   const [name, setName] = useState(userData.name ? userData.name : "");
   const [age, setAge] = useState(userData.age ? userData.age : "");
   const [part, setPart] = useState(userData.part ? userData.part : "");
